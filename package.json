@@ -1,0 +1,30 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.2.1",
+        "@vue/compiler-sfc": "^3.2.23",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.1.0",
+        "axios": "^0.21",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.2.1",
+        "postcss-import": "^12.0.1",
+        "tailwindcss": "^2.0.2",
+        "vue-loader": "^16.5.0"
+    },
+    "dependencies": {
+        "laravel-echo": "^1.11.3",
+        "pusher-js": "^7.0.3",
+        "vue": "^3.2.23"
+    }
+}
