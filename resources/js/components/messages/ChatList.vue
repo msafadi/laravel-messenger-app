@@ -39,7 +39,7 @@
 
                             <div class="d-flex align-items-center">
                                 <div class="line-clamp me-auto">
-                                    {{ conversation.last_message.body }}
+                                    {{ conversation.last_message.type == 'attachment'? conversation.last_message.body.file_name : conversation.last_message.body }}
                                 </div>
                                 <div v-if="conversation.new_messages" class="badge badge-circle bg-primary ms-5">
                                     <span>{{ conversation.new_messages }}</span>

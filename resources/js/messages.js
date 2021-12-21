@@ -45,6 +45,9 @@ const chatApp = createApp({
                             conversation.new_messages++;
                             conversation.last_message = data.message;
                             exists = true;
+                            this.conversations.splice(i, 1);
+                            this.conversations.unshift(conversation);
+
                             if (this.conversation && this.conversation.id == conversation.id) {
                                 this.messages.push(data.message);
                                 let container = document.querySelector('#chat-body');
@@ -57,7 +60,7 @@ const chatApp = createApp({
                         fetch(`/api/conversations/${data.message.conversation_id}`)
                             .then(response => response.json())
                             .then(json => {
-                                this.conversations.push(json)
+                                this.conversations.unshift(json)
                             })
                     }
                 

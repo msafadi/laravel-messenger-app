@@ -2625,18 +2625,19 @@
         </div>
 
         <!-- Scripts -->
-        <script src="{{ asset('assets/js/vendor.js') }}"></script>
-        <script src="{{ asset('assets/js/template.js') }}"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>--}}
         <script src="{{ asset('js/moment.js') }}"></script>
         <script src="{{ asset('js/manifest.js') }}"></script>
         <script src="{{ asset('js/vendor.js') }}"></script>
-        
         <script>
             const userId = "{{ Auth::id() }}";
             const csrf_token = "{{ csrf_token() }}";
         </script>
         <script src="{{ asset('js/messages.js') }}"></script>
+
+        <script src="{{ asset('assets/js/vendor.js') }}"></script>
+        <script src="{{ asset('assets/js/template.js') }}"></script>
+        
 {{--
         <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
         <script>

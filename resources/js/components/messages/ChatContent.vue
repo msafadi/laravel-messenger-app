@@ -10,8 +10,34 @@
                     <div class="message-inner">
                         <div class="message-body">
                             <div class="message-content">
-                                <div class="message-text">
+                                <div class="message-text" v-if="message.type=='text'">
                                     <p>{{ message.body }}</p>
+                                </div>
+                                <div class="message-gallery" v-if="message.type=='attachment' && message.body.mimetype.match(/image\/.+/)">
+                                    <div class="row gx-3">
+                                        <div class="col">
+                                            <img class="img-fluid rounded" v-bind:src="'/storage/'+message.body.file_path" data-action="zoom" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="message-text" v-if="message.type=='attachment' && !message.body.mimetype.match(/image\/.+/)">
+                                    <div class="row align-items-center gx-4">
+                                        <div class="col-auto">
+                                            <a v-bind:href="'/storage/'+message.body.file_path" class="avatar avatar-sm">
+                                                <div class="avatar-text bg-white text-primary">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col overflow-hidden">
+                                            <h6 class="text-truncate text-reset">
+                                                <a href="#" class="text-reset">{{ message.body.file_name }}</a>
+                                            </h6>
+                                            <ul class="list-inline text-uppercase extra-small opacity-75 mb-0">
+                                                <li class="list-inline-item">{{ Number(message.body.file_size / 1024).toFixed(2) }} KB</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Dropdown -->

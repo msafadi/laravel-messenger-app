@@ -14,6 +14,10 @@ class Message extends Model
         'conversation_id', 'user_id', 'body', 'type',
     ];
 
+    protected $casts = [
+        'body' => 'json',
+    ];
+
     public function conversation()
     {
         return $this->belongsTo(Conversation::class);

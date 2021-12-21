@@ -63,7 +63,10 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'message' => ['required', 'string'],
+            // 'message' => [Rule::requiredIf(function() use ($request) {
+            //     return !$request->hasFile('attachment');
+            // }), 'string'],
+            // 'attachment' => ['file'],
             'conversation_id' => [
                 Rule::requiredIf(function() use ($request) {
                     return !$request->input('user_id');
@@ -112,9 +115,25 @@ class MessagesController extends Controller
 
             }
 
+            $type = 'text';
+            $message = $request->post('message');
+            if ($request->hasFile('attachment')) {
+                $file = $request->file('attachment');
+                $message = [
+                    'file_name' => $file->getClientOriginalName(),
+                    'file_size' => $file->getSize(),
+                    'mimetype' => $file->getMimeType(),
+                    'file_path' => $file->store('attachments', [
+                        'disk' => 'public'
+                    ]),
+                ];
+                $type = 'attachment';
+            }
+
             $message = $conversation->messages()->create([
                 'user_id' => $user->id,
-                'body' => $request->post('message'),
+                'type' => $type,
+                'body' => $message,
             ]);
             
             DB::statement('
